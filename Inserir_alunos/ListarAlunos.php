@@ -9,7 +9,6 @@
     <tr><th>Matricula</th><th>Nome</th><th>Email</th></tr>
 <?php
    $arqAluno = fopen("alunos.txt","r") or die("erro ao abrir arquivo");
- 
    while(!feof($arqAluno)) {
         $linha = fgets($arqAluno);
         $colunaDados = explode(";", $linha);

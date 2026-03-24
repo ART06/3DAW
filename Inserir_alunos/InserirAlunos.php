@@ -44,6 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 
     <p><strong><?php echo $msg; ?></strong></p>
+
+    <hr>
+    <a href="EncontrarAlunoEditar.php">Editar Aluno</a> | 
+    <a href="EncontrarAlunoExcluir.php">Excluir Aluno</a>
+    <hr>
     
     <br>
     <a href="alunos.txt" target="_blank">Visualizar arquivo de texto</a>
