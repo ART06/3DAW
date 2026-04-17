@@ -5,7 +5,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $correto=$_POST["correto"];
     $msg="";
 
-    if(!file_exists($arqMult)){
+    if(!file_exists("PergTxt.txt")){
         $arqTxt=fopen("PergTxt.txt","w") or die("Erro ao criar arquivo.");
         $cabecalho="ID;Pergunta;Resposta-Modelo\n";
         fwrite($arqTxt,$cabecalho);
@@ -42,6 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <a href="ListarPergResp.php">Ver Todas as Perguntas</a>
     <hr>
     <a href="CadastrarPergMult.php">Cadastrar Pergunta de Múltipla Escolha</a><br><br>
-    <a href="ExcluirPergTxt.php">Excluir Pergunta de Texto</a>
+    <a href="ExcluirPergTxt.php">Excluir Pergunta de Texto</a><br>
+    <a href="AlterarPergTxt.php">Alterar Pergunta de Texto</a>
 </body>
 </html>
