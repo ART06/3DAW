@@ -1,9 +1,9 @@
 <?php
+$msg = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $matricula = $_POST["matricula"];
     $nome = $_POST["nome"];
     $email = $_POST["email"];
-    $msg = "";
     
     if (!file_exists("alunos.txt")) {
         $arqAlunos = fopen("alunos.txt", "w") or die("Erro ao criar arquivo!");
@@ -29,18 +29,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Aluno</title>
+    
+    <script>
+        function validarEEnviar() {
+            const matricula = document.querySelector('input[name="matricula"]').value.trim();
+            const nome = document.querySelector('input[name="nome"]').value.trim();
+            const email = document.querySelector('input[name="email"]').value.trim();
+
+            if (matricula == "" || isNaN(matricula)) {
+                alert("Insira uma matrícula válida que contenha apenas números.");
+                return;
+            }
+
+            if (nome.length < 2 || nome == "") {
+                alert("Insira um nome válido.");
+                return;
+            }
+
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexEmail.test(email)) {
+                alert("Insira um endereço de e-mail válido.");
+                return;
+            }
+
+            document.getElementById('formAluno').submit();
+        }
+    </script>
 </head>
 <body>
     <h1>Incluir Novo Aluno</h1>
     
-    <form action="" method="POST">
+    <form id="formAluno" action="" method="POST">
         Matrícula: <input type="text" name="matricula" required>
         <br><br>
         Nome: <input type="text" name="nome" required>
         <br><br>
         E-mail: <input type="email" name="email" required>
         <br><br>
-        <input type="submit" value="Cadastrar Aluno">
+        
+        <button type="button" onclick="validarEEnviar()">Cadastrar Aluno</button>
     </form>
 
     <p><strong><?php echo $msg; ?></strong></p>
